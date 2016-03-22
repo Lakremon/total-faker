@@ -1,7 +1,7 @@
 <?php
 namespace totalFaker;
 
-class World
+class World extends FakerComponent
 {
     private $_skyColor;
 
@@ -12,5 +12,9 @@ class World
             rand(0, 255),
             rand(0, 255),
         ];
+    }
+
+    function getPersone(){
+
     }
 }
