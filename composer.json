@@ -1,0 +1,26 @@
+{
+    "name": "Lakremon/totalFaker",
+    "type": "library",
+    "description": "totalFaker is PHP program complex to take realistic data about peoples, Companies etc. to test your application.",
+    "keywords": [
+        "php",
+        "faker",
+        "test",
+        "random"
+    ],
+    "homepage": "https://github.com/Lakremon/totalFaker",
+    "authors": [
+        {
+            "name": "Lakremon",
+            "email": "self@lakremon.ru",
+            "homepage": "https://lakremon.ru",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^5.4.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.2.1"
+    }
+}

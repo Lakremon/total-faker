@@ -3,6 +3,7 @@ namespace totalFaker;
 
 class World
 {
+    use Thing;
     private $_skyColor;
 
     function __construct()
