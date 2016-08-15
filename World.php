@@ -12,7 +12,7 @@ class World extends FakerComponent
             'cars' => [],
             'cities' => [],
     ];
-    private $_skyColor;
+    private $_persons;
 
 
     function __construct()
@@ -24,16 +24,19 @@ class World extends FakerComponent
         ];
     }
 
-    function generatePerson($params=[])
+    function generatePerson($params = [], $isNewPerson = true)
     {
-        if(!is_array($params)){
+        if (!is_array($params)) {
             //TODO add params is not array exception
             throw new \Exception();
         }
-
-        $person = New Person($params);
-
-
+        if ($isNewPerson) {
+            $person = New Person($params, $this);
+            $this->_persons[] = $person;
+        } else {
+            $person = $this - $this->_persons[rand(0, count($this->_persons) + 1)];
+        }
+        return $person;
     }
 
     function findAnyPerson()

@@ -11,7 +11,10 @@ namespace totalFaker;
 
 class Person
 {
-    use Thing;
+    use Thing {
+        Thing::__construct as private __thConstruct;
+    }
+
     protected $_attributes = [
             'firstName' => null,
             'soName' => null,
@@ -23,10 +26,20 @@ class Person
             'characterStructure' => null,
             'eysColor' => null,
             'hairColor' => null,
+            'language' => null,
     ];
 
-    public function __construct($params = [])
+    public function __construct($params = [], $world = null)
     {
         $this->_attributes = array_merge_recursive($this->_attributes, $params);
+        $this->__thConstruct($params, $world);
     }
+
+    public function getFirstName(){
+
+    }
+
+    public function getLanguage({
+        
+    })
 }

@@ -15,6 +15,12 @@ trait Thing
 {
     protected $_attributes = [];
     protected $_variables = [];
+    protected $_world = null;
+
+    public function __construct($params=[], World $world = null)
+    {
+        $this->_world = $world;
+    }
 
     /**
      * @param $name
