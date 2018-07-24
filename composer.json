@@ -1,6 +1,7 @@
 {
     "name": "lakremon/total-faker",
     "type": "library",
+    "license": "GPL-3.0-only",
     "description": "total-faker is PHP program complex to take realistic data about peoples, Companies etc. to test your application.",
     "keywords": [
         "php",
