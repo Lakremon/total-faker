@@ -1,12 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: pspirin
- * Date: 7/26/2016
- * Time: 1:17 PM
- */
 
-namespace totalFaker;
+namespace TotalFaker\Entities;
 
 
 class Person
@@ -16,17 +10,17 @@ class Person
     }
 
     protected $_attributes = [
-            'firstName' => null,
-            'soName' => null,
-            'lastName' => null,
-            'patronymic' => null,
-            'age' => null,
-            'bethDate' => null,
-            'gender' => null,
-            'characterStructure' => null,
-            'eysColor' => null,
-            'hairColor' => null,
-            'language' => null,
+        'firstName' => null,
+        'soName' => null,
+        'lastName' => null,
+        'patronymic' => null,
+        'age' => null,
+        'bethDate' => null,
+        'gender' => null,
+        'characterStructure' => null,
+        'eysColor' => null,
+        'hairColor' => null,
+        'language' => null,
     ];
 
     public function __construct($params = [], $world = null)
@@ -35,11 +29,12 @@ class Person
         $this->__thConstruct($params, $world);
     }
 
-    public function getFirstName(){
+    public function getFirstName()
+    {
 
     }
 
     public function getLanguage({
-        
+
     })
 }

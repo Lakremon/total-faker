@@ -1,23 +1,21 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Home
- * Date: 12.07.2016
- * Time: 22:11
- */
 
-namespace totalFaker;
+namespace TotalFaker\Entities;
 
 use totalFaker\Exceptions\WrongAttributeException;
 use totalFaker\Exceptions\AttributeGeneratorNotFoundException;
 
+/**
+ * Trait Thing
+ * @package TotalFaker\Entities
+ */
 trait Thing
 {
     protected $_attributes = [];
     protected $_variables = [];
     protected $_world = null;
 
-    public function __construct($params=[], World $world = null)
+    public function __construct($params = [], World $world = null)
     {
         $this->_world = $world;
     }

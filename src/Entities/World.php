@@ -1,16 +1,17 @@
 <?php
-namespace totalFaker;
+
+namespace TotalFaker\Entities;
 
 class World extends FakerComponent
 {
     use Thing;
 
     protected $_attributes = [
-            'skyColor' => null,
-            'persons' => [],
-            'companies' => [],
-            'cars' => [],
-            'cities' => [],
+        'skyColor' => null,
+        'persons' => [],
+        'companies' => [],
+        'cars' => [],
+        'cities' => [],
     ];
     private $_persons;
 
@@ -18,9 +19,9 @@ class World extends FakerComponent
     function __construct()
     {
         $this->_attributes['skyColor'] = [
-                rand(0, 255),
-                rand(0, 255),
-                rand(0, 255),
+            rand(0, 255),
+            rand(0, 255),
+            rand(0, 255),
         ];
     }
 
