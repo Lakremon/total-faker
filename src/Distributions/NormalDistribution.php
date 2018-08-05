@@ -12,7 +12,7 @@ class NormalDistribution
 
     public function getRandomNumber(int $expectedValue, float $standardDeviation): float
     {
-
+        echo 123;
         return 0.1;
     }
 }
