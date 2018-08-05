@@ -39,6 +39,6 @@
         }
     },
     "scripts": {
-        "test": "php ./vendor/phpunit/phpunit/phpunit"
+        "test": "php ./vendor/phpunit/phpunit/phpunit --no-configuration ./tests"
     }
 }

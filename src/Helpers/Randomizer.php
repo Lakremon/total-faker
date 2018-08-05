@@ -89,7 +89,7 @@ class Randomizer
 
         $string = '';
         for ($i = 0; $i < $length; $i++) {
-            $string .= substr($pull, self::getRandomInt(0, $pullLength), 1);
+            $string .= substr($pull, self::getRandomInt(0, $pullLength - 1), 1);
         }
         return $string;
     }
