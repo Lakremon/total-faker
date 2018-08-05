@@ -3,3 +3,4 @@
 /composer.lock
 /bin/*
 !/bin/
+tests/.phpunit.result.cache

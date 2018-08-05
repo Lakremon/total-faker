@@ -26,7 +26,8 @@
     },
     "autoload": {
         "psr-4": {
-            "TotalFaker\\": "src/"
+            "TotalFaker\\": "src/",
+            "TotalFaker\\Exceptions\\": "Exceptions/"
         }
     },
     "require-dev": {
@@ -34,10 +35,10 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "OpenApiTests\\": "tests/"
+            "TotalFakerTests\\": "tests/"
         }
     },
     "scripts": {
-        "test": "phpunit && phpcs -p --extensions=php --standard=PSR2 --error-severity=1 --warning-severity=0 ./src ./tests"
+        "test": "php ./vendor/phpunit/phpunit/phpunit"
     }
 }
