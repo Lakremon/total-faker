@@ -12,7 +12,7 @@ class TotalFaker
      * get
      * @return World
      */
-    public static function getWorld():World
+    public static function getWorld(): World
     {
         return self::$world ?? self::$world = new World();
     }

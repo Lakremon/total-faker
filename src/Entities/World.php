@@ -2,46 +2,41 @@
 
 namespace TotalFaker\Entities;
 
-class World extends FakerComponent
+use TotalFaker\Helpers\Randomizer;
+
+class World
 {
     use Thing;
 
-    protected $_attributes = [
+    protected $attributes = [
         'skyColor' => null,
         'persons' => [],
         'companies' => [],
         'cars' => [],
         'cities' => [],
     ];
-    private $_persons;
-
+    private $persons;
 
     function __construct()
     {
-        $this->_attributes['skyColor'] = [
-            rand(0, 255),
-            rand(0, 255),
-            rand(0, 255),
+        $this->attributes['skyColor'] = [
+            Randomizer::getRandomInt(0, 255),
+            Randomizer::getRandomInt(0, 255),
+            Randomizer::getRandomInt(0, 255),
         ];
     }
 
-    function generatePerson($params = [], $isNewPerson = true)
+    function getNewPerson(array $params = []): Person
     {
-        if (!is_array($params)) {
-            //TODO add params is not array exception
-            throw new \Exception();
-        }
-        if ($isNewPerson) {
-            $person = New Person($params, $this);
-            $this->_persons[] = $person;
-        } else {
-            $person = $this - $this->_persons[rand(0, count($this->_persons) + 1)];
-        }
-        return $person;
+        $this->persons[] = New Person($params, $this);
+        return end($this->persons);
     }
 
-    function findAnyPerson()
+    function getAnyPerson(): Person
     {
-
+        if (empty($this->persons)) {
+            return $this->getNewPerson();
+        }
+        return $this->persons[Randomizer::getRandomInt(0, count($this->persons) - 1)];
     }
 }

@@ -2,8 +2,8 @@
 
 namespace TotalFaker\Entities;
 
-use totalFaker\Exceptions\WrongAttributeException;
-use totalFaker\Exceptions\AttributeGeneratorNotFoundException;
+use TotalFaker\Exceptions\WrongAttributeException;
+use TotalFaker\Exceptions\AttributeGeneratorNotFoundException;
 
 /**
  * Trait Thing
@@ -11,13 +11,19 @@ use totalFaker\Exceptions\AttributeGeneratorNotFoundException;
  */
 trait Thing
 {
-    protected $_attributes = [];
-    protected $_variables = [];
-    protected $_world = null;
+    protected $attributes = [];
+    protected $relations = [];
+    protected $variables = [];
+    protected $world = null;
 
     public function __construct($params = [], World $world = null)
     {
-        $this->_world = $world;
+        foreach ($this->attributes as $attrName => $attrValue) {
+            if (key_exists($attrName, $params)) {
+                $this->attributes[$attrName] = $params[$attrName];
+            }
+        }
+        $this->world = $world;
     }
 
     /**
@@ -28,8 +34,8 @@ trait Thing
      */
     final function __get($name)
     {
-        if (array_key_exists($name, $this->_attributes)) {
-            if (is_null($this->_attributes[$name])) {
+        if (array_key_exists($name, $this->attributes)) {
+            if (is_null($this->attributes[$name])) {
                 $methodName = 'get' . ucfirst($name);
                 if (method_exists($this, $methodName)) {
                     return $this->$methodName();
@@ -37,10 +43,10 @@ trait Thing
                     throw new AttributeGeneratorNotFoundException();
                 }
             } else {
-                return $this->_attributes[$name];
+                return $this->attributes[$name];
             }
-        } elseif (array_key_exists($name, $this->_variables)) {
-            return $this->_variables[$name];
+        } elseif (array_key_exists($name, $this->variables)) {
+            return $this->variables[$name];
         } else {
             throw new WrongAttributeException();
         }
@@ -52,10 +58,10 @@ trait Thing
      */
     final function __set($name, $value)
     {
-        if (array_key_exists($name, $this->_attributes)) {
-            $this->_attributes[$name] = $value;
+        if (array_key_exists($name, $this->attributes)) {
+            $this->attributes[$name] = $value;
         } else {
-            $this->_variables[$name] = $value;
+            $this->variables[$name] = $value;
         }
     }
 
@@ -64,14 +70,14 @@ trait Thing
      */
     public function attrNamesList()
     {
-        return array_keys($this->_attributes);
+        return array_keys($this->attributes);
     }
 
     /**
      * @return array
      */
-    public function customVarsNames()
+    public function varsNamesList()
     {
-        return array_keys($this->_variables);
+        return array_keys($this->variables);
     }
 }

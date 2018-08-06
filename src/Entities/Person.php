@@ -2,14 +2,35 @@
 
 namespace TotalFaker\Entities;
 
+use TotalFaker\Distributions\CustomDistribution;
 
+/**
+ * Class Person
+ * @package TotalFaker\Entities
+ *
+ * @property int $firstName
+ * @property int $soName
+ * @property int $lastName
+ * @property int $patronymic
+ * @property int $age
+ * @property int $bethDate
+ * @property int $gender
+ * @property int $characterStructure
+ * @property int $eysColor
+ * @property int $hairColor
+ * @property int $language
+ */
 class Person
 {
     use Thing {
         Thing::__construct as private __thConstruct;
     }
 
-    protected $_attributes = [
+    private static $maleNamesMap = [];
+    private static $femaleNamesMap = [];
+    private static $lastNamesMap = [];
+
+    protected $attributes = [
         'firstName' => null,
         'soName' => null,
         'lastName' => null,
@@ -26,11 +47,10 @@ class Person
     /**
      * Person constructor.
      * @param array $params
-     * @param null $world
+     * @param World|null $world
      */
     public function __construct($params = [], $world = null)
     {
-        $this->_attributes = array_merge_recursive($this->_attributes, $params);
         $this->__thConstruct($params, $world);
     }
 
@@ -44,7 +64,16 @@ class Person
 
     /**
      */
-    public function getLanguage(){
+    public function getLanguage()
+    {
 
+    }
+
+    public function getGender()
+    {
+        return CustomDistribution::getOne([
+            'male' => 1014,
+            'female' => 1000,
+        ]);
     }
 }
