@@ -28,7 +28,7 @@ class World
 
     function getNewPerson(array $params = []): Person
     {
-        $this->persons[] = New Person($params, $this);
+        $this->persons[] = new Person($params, $this);
         return end($this->persons);
     }
 

@@ -8,17 +8,17 @@ use TotalFaker\Distributions\CustomDistribution;
  * Class Person
  * @package TotalFaker\Entities
  *
- * @property int $firstName
- * @property int $soName
- * @property int $lastName
- * @property int $patronymic
+ * @property string $firstName
+ * @property string $soName
+ * @property string $lastName
+ * @property string $patronymic
  * @property int $age
- * @property int $bethDate
- * @property int $gender
- * @property int $characterStructure
- * @property int $eysColor
- * @property int $hairColor
- * @property int $language
+ * @property string $bethDate
+ * @property string $gender
+ * @property string $characterStructure
+ * @property string $eysColor
+ * @property string $hairColor
+ * @property string $language
  */
 class Person
 {
@@ -55,11 +55,20 @@ class Person
     }
 
     /**
-     *
+     * @return string
      */
-    public function getFirstName()
+    protected function getFirstName()
     {
+        $mapArray = $this->gender == 'male' ? self::getMaleNamesMap() : self::getFemaleNamesMap();
+        return CustomDistribution::getOne($mapArray);
+    }
 
+    /**
+     * @return string
+     */
+    protected function getLastName()
+    {
+        return CustomDistribution::getOne(self::getLastNamesMap());
     }
 
     /**
@@ -75,5 +84,34 @@ class Person
             'male' => 1014,
             'female' => 1000,
         ]);
+    }
+
+    private static function getMaleNamesMap()
+    {
+        if (empty(self::$maleNamesMap)) {
+            $fileName = dirname(__FILE__) . '/../../l10n/en-US/male-first-name-map.arr';
+            $fileContent = file_get_contents($fileName);
+            self::$maleNamesMap = unserialize($fileContent);
+        }
+        return self::$maleNamesMap;
+    }
+
+    private static function getFemaleNamesMap()
+    {
+        if (empty(self::$femaleNamesMap)) {
+            $fileName = dirname(__FILE__) . '/../../l10n/en-US/female-first-name-map.arr';
+            $fileContent = file_get_contents($fileName);
+            self::$femaleNamesMap = unserialize($fileContent);
+        }
+        return self::$femaleNamesMap;
+    }
+
+    private static function getLastNamesMap()
+    {
+        if (empty(self::$lastNamesMap)) {
+            $fileName = dirname(__FILE__) . '/../../l10n/en-US/last-name-map.arr';
+            self::$lastNamesMap = unserialize(file_get_contents($fileName));
+        }
+        return self::$lastNamesMap;
     }
 }

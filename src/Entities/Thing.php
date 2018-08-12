@@ -11,8 +11,6 @@ use TotalFaker\Exceptions\AttributeGeneratorNotFoundException;
  */
 trait Thing
 {
-    protected $attributes = [];
-    protected $relations = [];
     protected $variables = [];
     protected $world = null;
 
@@ -38,13 +36,12 @@ trait Thing
             if (is_null($this->attributes[$name])) {
                 $methodName = 'get' . ucfirst($name);
                 if (method_exists($this, $methodName)) {
-                    return $this->$methodName();
+                    $this->attributes[$name] = $this->$methodName();
                 } else {
                     throw new AttributeGeneratorNotFoundException();
                 }
-            } else {
-                return $this->attributes[$name];
             }
+            return $this->attributes[$name];
         } elseif (array_key_exists($name, $this->variables)) {
             return $this->variables[$name];
         } else {
