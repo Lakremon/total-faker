@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: lakremon
- * Date: 8/5/18
- * Time: 2:01 PM
- */
 
 namespace TotalFaker\Helpers;
 
@@ -13,6 +7,11 @@ use TotalFaker\Exceptions\RandomFunctionException;
 use TotalFaker\Exceptions\WrongRandomizerPullLength;
 use TotalFaker\Exceptions\WrongRandomStringLengthException;
 
+/**
+ * Class Randomizer get random numbers and strings functions.
+ *
+ * @package TotalFaker\Helpers
+ */
 class Randomizer
 {
     const DEFAULT_LETTERS_PULL = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
