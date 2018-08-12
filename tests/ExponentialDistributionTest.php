@@ -21,7 +21,7 @@ class ExponentialDistributionTest extends TestCase
         $values = [];
         for ($i = 0; $i < 10000; $i++) {
             $number = $normalDistribution->getRandomNumber();
-            $key = intval(round($number));
+            $key = intval(floor($number * 10));
             if (!key_exists($key, $values)) {
                 $values[$key] = 0;
             }
@@ -31,7 +31,8 @@ class ExponentialDistributionTest extends TestCase
 
         $this->assertEquals(10000, array_sum($values));
         foreach ($values as $key => $value) {
-            echo "{$key} => {$value}\r\n";
+            $name = number_format($key / 10, 1);
+            echo "{$name} => {$value}\r\n";
         }
         echo "\r\n";
     }
